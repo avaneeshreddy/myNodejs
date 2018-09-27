@@ -9,6 +9,7 @@
   "author": "avaneesh",
   "license": "ISC",
   "dependencies": {
+    "fs": "0.0.1-security",
     "lodash": "^4.17.10",
     "yargs": "^4.7.1"
   }
