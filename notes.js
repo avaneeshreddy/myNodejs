@@ -1,7 +1,22 @@
 console.log('Starting notes.js');
+const fs = require('fs');
 
 var addNote = (tittle, body) =>{
     console.log(`Adding tittle ${tittle} with body "${body}"`);
+    let notes = [];
+    let note ={
+        tittle,
+        body
+    };
+
+    //fethcing if notes-data.json exists
+    var notesString = fs.readFileSync('notes-data.json');
+    notes = JSON.parse(notesString);
+
+
+    notes.push(note);   //pushes notes to array
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes)); //converts to string and saves to file
+
 }
 
 var getAll = () => {
