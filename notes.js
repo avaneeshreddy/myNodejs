@@ -16,10 +16,16 @@ var addNote = (tittle, body) =>{
     }catch(e){
 
     }
-    
-    notes.push(note);   //pushes notes to array
-    fs.writeFileSync('notes-data.json', JSON.stringify(notes)); //converts to string and saves to file
 
+    //checking for duplicates before einserting new note
+    let duplicateNote = notes.filter((note) => note.tittle === tittle);
+    
+    if (duplicateNote.length === 0) {
+        notes.push(note);   //pushes notes to array
+        fs.writeFileSync('notes-data.json', JSON.stringify(notes)); //converts to string and saves to file
+    }else{
+        console.log(`Duplicate Note "${tittle}" already exists`);
+    }
 }
 
 var getAll = () => {
