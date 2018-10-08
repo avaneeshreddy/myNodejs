@@ -16,7 +16,7 @@ const saveNotes = (notes) =>{
     fs.writeFileSync('notes-data.json', JSON.stringify(notes)); //converts to string and saves to file
 }
 
-var addNote = (tittle, body) =>{
+const addNote = (tittle, body) =>{
     let notes = fetchNotes();
     let note ={
         tittle,
@@ -41,8 +41,11 @@ var getNote = (tittle) => {
     console.log(`you have entered ${tittle} to read`);
 }
 
-var remove = (tittle) => {
-    console.log(`Tittle ${tittle} removed`);
+const remove = (tittle) => {
+    const notes = fetchNotes();
+    const filteredNotes = notes.filter((note) => note.tittle !== tittle);
+    saveNotes(filteredNotes);
+    return notes.length !== filteredNotes.length;
 }
 
 module.exports = {
