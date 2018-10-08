@@ -12,7 +12,15 @@ console.log("Command: ", command);
 console.log("yargv.argv ", argv);
 
 if(command == 'add'){
-    notes.addNote(argv.tittle, argv.body);
+    const note = notes.addNote(argv.tittle, argv.body);
+    if (note != undefined){
+        console.log('Note Created');
+        console.log('--');
+        console.log(`Tittle: ${note.tittle}`);
+        console.log(`Body: ${note.body}`);
+    }else{
+        console.log(`Duplicate Note "${argv.tittle}" already exists`);
+    }
 }else if(command == 'list'){
     notes.getAll();
 }else if(command == 'read'){
